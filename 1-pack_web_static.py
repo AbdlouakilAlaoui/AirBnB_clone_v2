@@ -8,15 +8,17 @@ from datetime import datetime
 
 
 def do_pack():
-    """
-    Compresses the contents of web_static folder into a .tgz archive
-    Returns: Archive path if successful, None otherwise
-    """
-    timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
-    archive_name = "web_static_" + timestamp + ".tgz"
-    local("mkdir -p versions")
-    result = local("tar -czvf versions/{} web_static".format(archive_name))
-    if result.succeeded:
-        return "versions/{}".format(archive_name)
-    return None
+    """Generates a .tgz archive from web_static folder """ 
+    if not os.path.exists('version'):
+       os.makedirs('versions')
+       now = datatime.now()
+       timestamp = now.strftime("%Y%m%d%H%M%S")
+      
+    archive_name ='versions/web_static_{}.tgz'.format(timestamp) 
+    command = 'tra -cvzf {} web_static'.format(archive_name)
+    result = local(command)
+    if result.failed:
+         return None
+   else:
+    return archive_name
 
