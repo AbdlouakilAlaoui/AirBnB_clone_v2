@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/python3
 """
 Fabric script to generate a .tgz archive from the contents of the web_static folder
 """
